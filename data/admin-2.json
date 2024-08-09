@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "admin",
+  "risk": "3",
+  "title": "Front-running risk in the context of the rotateSigners function",
+  "issueId": 2,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/2"
+}
