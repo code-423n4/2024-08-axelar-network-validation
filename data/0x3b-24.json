@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "0x3b",
+  "risk": "3",
+  "title": "`rotateSigners` can get bricked, also stopping any message approvals",
+  "issueId": 24,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/24"
+}
