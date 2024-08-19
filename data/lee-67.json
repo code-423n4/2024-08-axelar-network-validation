@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "lee",
+  "risk": "2",
+  "title": "To mitigate this risk, implement validation checks for the address before saving it to the storage.",
+  "issueId": 67,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/67"
+}
