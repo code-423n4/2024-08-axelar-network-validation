@@ -23,5 +23,6 @@ Currently `expressExecute` can be invoked by any address, without providing actu
 To avoid any risks, the protocol team must be aware that `InterchainTransferReceived` may return harmful data, and users of the protocol must be informed that `expressExecuteWithInterchainToken` must be thoroughly validated.
 
 ### [L-04] Funds may be stuck in ITS
+
 `interchainTransfer` and `callContractWithInterchainToken` send `gasValue`, provided by the caller, to `gasService`. The issue is that `msg.value` may be more than `gasValue`. The excess ETH would stay in ITS and will likely be used by other users to fund their transfers.
 Consider, refunding any excess ETH back to the caller.
