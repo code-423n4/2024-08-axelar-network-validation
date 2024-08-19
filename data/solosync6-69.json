@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "solosync6",
+  "risk": "3",
+  "title": "Inconsistent balance tracking allows unlimited token minting",
+  "issueId": 69,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/69"
+}
