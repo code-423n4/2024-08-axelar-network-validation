@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "peanuts",
+  "risk": "2",
+  "title": "The axelarnet gateway only routes one message per chain at a time",
+  "issueId": 76,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/76"
+}
