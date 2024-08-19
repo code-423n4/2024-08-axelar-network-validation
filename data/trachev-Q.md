@@ -26,3 +26,8 @@ To avoid any risks, the protocol team must be aware that `InterchainTransferRece
 
 `interchainTransfer` and `callContractWithInterchainToken` send `gasValue`, provided by the caller, to `gasService`. The issue is that `msg.value` may be more than `gasValue`. The excess ETH would stay in ITS and will likely be used by other users to fund their transfers.
 Consider, refunding any excess ETH back to the caller.
+
+### [L-05] WETH and USDB Blast yield will be lost
+
+If WETH or USDB are used in the ITS, deployed on Blast, their accumulated yield will not be claimable. By default the yield strategy for WETH and USDB on Blast is AUTOMATIC, thus their smart contract balances automaically grow. Therefore, if USDB or WETH are locked in a TokenManager, deployed on Blast, they will accrue yield, which cannot be claimed.
+Consider implementing a special TokenManger for Blast that configures it's strategy to Claimable and has a function that handles accrued yield
