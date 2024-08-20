@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Shubham",
+  "risk": "2",
+  "title": "Attacker can make a deploy action fail",
+  "issueId": 81,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/81"
+}
