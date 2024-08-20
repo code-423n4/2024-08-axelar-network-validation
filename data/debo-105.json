@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "2",
+  "title": "BaseWeightedMultisig contract Missing override Specifier in Overriding Public State Variable named previousSignersRetention",
+  "issueId": 105,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/105"
+}
