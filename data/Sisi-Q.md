@@ -59,3 +59,8 @@ Add the following information in the natspec:
         uint256 amount
     ) internal virtual;
 ```
+
+# Method `InterchainTokenStandart::_beforeInterchainTransfer` is virtual, but its functionality is not implemented in the derived contract in `InterchainToken.sol` or anywere else except in test files.
+
+Nothing will happen before the transfer so no one can approve the tokenManager if needed,
+to allow users for a 1-call transfer in case of a lock-unlock token manager.
