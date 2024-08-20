@@ -1,4 +1,4 @@
-Incorrect natspec in `WightedMultisigTypes.sol`
+# Incorrect natspec in `WightedMultisigTypes.sol`
 
 ## Description
 
@@ -22,4 +22,40 @@ struct WeightedSigner {
     address signer;
     uint128 weight;
 }
+```
+
+# Missing @dev must revert param for following implementations
+## Description
+Every implementation of `InterchainTokenExecutable::__executeWithInterchainToken` must revert if incorrect input is provided, otherwise it will return wrong results.
+In some implementation of `InterchainTokenExecutable::__executeWithInterchainToken` doesn't revert the functionality of the protocol will be disrupted as `InterchainTokenExecutable::executeWithInterchainToken` only calls `_executeWithInterchainToken` and immediately returns `EXECUTE_SUCCESS`.
+
+## Found in
+https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/executable/InterchainTokenExecutable.sol#L38-#L61
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/executable/InterchainTokenExecutable.sol#L63-#L83
+
+## Recommended Mitigation Steps
+Add the following information in the natspec:
+```diff
+ /**
+     * @notice Internal function containing the logic to be executed with interchain token transfer.
+     * @dev Logic must be implemented by derived contracts.
++     * @dev Every implemetation must revert if incorrect data is provided.
+     * @param commandId The unique message id.
+     * @param sourceChain The source chain of the token transfer.
+     * @param sourceAddress The source address of the token transfer.
+     * @param data The data associated with the token transfer.
+     * @param tokenId The token ID.
+     * @param token The token address.
+     * @param amount The amount of tokens being transferred.
+ */
+    function _executeWithInterchainToken(
+        bytes32 commandId,
+        string calldata sourceChain,
+        bytes calldata sourceAddress,
+        bytes calldata data,
+        bytes32 tokenId,
+        address token,
+        uint256 amount
+    ) internal virtual;
 ```
