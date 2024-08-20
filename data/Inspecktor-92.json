@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Inspecktor",
+  "risk": "3",
+  "title": "Failure to validate the calling address of the TokenHandler.giveToken() function will affect the functioning of the contract",
+  "issueId": 92,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/92"
+}
