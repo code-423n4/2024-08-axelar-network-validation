@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "2",
+  "title": "BaseWeightedMultisig contract has Missing override Specifier in Overriding Function named signerHashByEpoch",
+  "issueId": 94,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/94"
+}
