@@ -1,4 +1,4 @@
-# Incorrect natspec in `WightedMultisigTypes.sol`
+# [L-01] Incorrect natspec in `WightedMultisigTypes.sol`
 
 ## Description
 
@@ -24,7 +24,8 @@ struct WeightedSigner {
 }
 ```
 
-# Missing @dev must revert param for following implementations
+# [L-02] Missing @dev must revert param for following implementations
+
 ## Description
 Every implementation of `InterchainTokenExecutable::__executeWithInterchainToken` must revert if incorrect input is provided, otherwise it will return wrong results.
 In some implementation of `InterchainTokenExecutable::__executeWithInterchainToken` doesn't revert the functionality of the protocol will be disrupted as `InterchainTokenExecutable::executeWithInterchainToken` only calls `_executeWithInterchainToken` and immediately returns `EXECUTE_SUCCESS`.
@@ -60,7 +61,7 @@ Add the following information in the natspec:
     ) internal virtual;
 ```
 
-# Method `InterchainTokenStandart::_beforeInterchainTransfer` is virtual, but its functionality is not implemented in the derived contract in `InterchainToken.sol` or anywere else except in test files.
+# [L-03] Method `InterchainTokenStandart::_beforeInterchainTransfer` is virtual, but its functionality is not implemented in the derived contract in `InterchainToken.sol` or anywere else except in test files.
 
 Nothing will happen before the transfer so no one can approve the tokenManager if needed,
 to allow users for a 1-call transfer in case of a lock-unlock token manager.
