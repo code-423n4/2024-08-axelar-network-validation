@@ -1,0 +1,1 @@
+The message typee variables in InterchainTokenService.sol can be of type uint8 in order to save gas: https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L73-L77
