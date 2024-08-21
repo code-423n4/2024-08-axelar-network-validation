@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Naresh",
+  "risk": "3",
+  "title": "Risk of reuse of signatures across forks due to lack of chain ID validation",
+  "issueId": 107,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/107"
+}
