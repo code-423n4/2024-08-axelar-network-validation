@@ -1,64 +1,75 @@
-## Impact
-Detailed description of the impact of this finding.
+## Finding 1: Missing override Keyword in Overriding Functions
 
-Missing override Specifier in Overriding Function.
+Impact: 
+Contracts that inherit from an interface or parent contract must include the override keyword in functions that are meant to override those in the inherited interface or contract. Failing to include this keyword causes the Solidity compiler to produce an error, preventing the contract from being compiled. This can lead to delays in deployment, functionality issues, and potential downtime in critical systems that depend on these contracts.
+Issue Type: Solidity Coding Standard Violation
 
-Issue Type: Code Quality / Functionality
+Description:
 
-The absence of the override specifier in an overriding function can lead to potential confusion in code maintenance, increased chances of errors, and might cause the contract to fail to compile, as Solidity requires explicit indication when a function overrides another. This issue can result in the contract being non-deployable and could impact the contract’s ability to correctly interact with other parts of the system.
+When a contract inherits from a parent contract or implements an interface, any functions that are intended to override the parent or interface functions must include the override keyword. This keyword is mandatory in Solidity to ensure that the developer explicitly acknowledges that the function is overriding a base function. The absence of the override keyword causes a compilation error, which can prevent the contract from being deployed or used.
 
-The contract attempts to override a function declared in an interface, but it fails to include the required override keyword. This leads to a compilation error in Solidity.
+Proof of Concept:
 
-The error message encountered is:
+Consider the following contract that implements an interface or inherits from a parent contract:
 ```sol
-[ERROR]: Solc experienced a fatal error.
 
-TypeError: Overriding function is missing "override" specifier.
-  --> /Users/williamsmith/Desktop/Stuff/2024-08-axelar-network/axelar-gmp-sdk-solidity/contracts/governance/BaseWeightedMultisig.sol:62:5:
-   |
-62 |     function epoch() external view returns (uint256) {
-   |     ^ (Relevant source part starts here and spans across multiple lines).
-Note: Overridden function is here:
-  --> /Users/williamsmith/Desktop/Stuff/2024-08-axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IBaseWeightedMultisig.sol:27:5:
-   |
-27 |     function epoch() external view returns (uint256);
-   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-```
+interface IAxelarAmplifierGateway is IBaseAmplifierGateway, IBaseWeightedMultisig, IUpgradable {
+...
+function transferOperatorship(address newOperator) external;
+}
 
-This error occurs because the function epoch() is defined in the IBaseWeightedMultisig interface and is being implemented in the BaseWeightedMultisig contract. In Solidity, when a function overrides another function from a parent contract or an interface, the override specifier must be used.
-
-## Proof of Concept
-Provide direct links to all referenced code in GitHub. Add screenshots, logs, or any other relevant proof that illustrates the concept.
-
-Here is the problematic code snippet:
-```sol
-    function epoch() external view returns (uint256) {
-        return _baseWeightedMultisigStorage().epoch;
+contract AxelarAmplifierGateway {
+...
+ function transferOperatorship(address newOperator) external onlyOperatorOrOwner {
+        _transferOperatorship(newOperator);
     }
 ```
 
-The function is intended to override the declaration in the IBaseWeightedMultisig interface:
-```sol
-// In IBaseWeightedMultisig.sol
+In the above code, the transferOperatorship in the AxelarAmplifierGateway contract is overriding the function in IAxelarAmplifierGateway. However, it lacks the override keyword, which will result in a compilation error.
 
-function epoch() external view returns (uint256);
+Mitigation:
+
+The solution is to add the override keyword to all functions in the derived contract that are intended to override functions in an interface or parent contract. Below is the corrected version of the contract:
+```sol
+function transferOperatorship(address newOperator) external onlyOperatorOrOwner override {
+        _transferOperatorship(newOperator);
+    }
 ```
 
-However, the override keyword is missing, leading to the compilation error.
-## Tools Used
-Manual review and MythX.
+The addition of the override keyword ensures that the contract acknowledges and correctly overrides the function from the parent contract or interface, allowing the contract to compile successfully.
 
-## Recommended Mitigation Steps
+## Finding 2: Pragma version for all contracts must be updated from ^0.8.0 to ^0.8.4 in order for all contracts to compile successfully.
 
-Add the override keyword to the function definition in the BaseWeightedMultisig contract. This explicitly indicates that the function is overriding a parent or interface function, resolving the compilation issue.
+Issue Type: Compilation / Compatibility
 
-The function should be updated as follows:
+Description:
+
+The Solidity compiler has undergone several updates between versions 0.8.0 and 0.8.4. These updates include important bug fixes and optimisations that may affect the behaviour and security of the smart contracts. The current contracts use pragma solidity ^0.8.0, which could allow them to be compiled with a version that lacks these important updates.
+
+Ensuring that the contracts are compiled with at least version 0.8.4 minimises the risk of encountering known issues that were present in earlier versions of Solidity 0.8.x, leading to more secure and reliable contract behaviour.
+
+Impact:
+
+If the contracts are compiled with a version of Solidity between 0.8.0 and 0.8.3, they might be vulnerable to bugs and issues that were addressed in version 0.8.4. This could lead to unexpected behaviour, security vulnerabilities, or even compilation errors in certain cases, compromising the integrity of the deployed smart contracts.
+
+Proof of Concept:
+
+Given the following example AxelarAmplifierGateway.sol contract:
 ```sol
-// In BaseWeightedMultisig.sol
+// https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-gmp-sdk-solidity/contracts/gateway/AxelarAmplifierGateway.sol#L3
 
-function epoch() external view override returns (uint256) {
-    return _baseWeightedMultisigStorage().epoch;
-}
+pragma solidity ^0.8.0;
 ```
 
-This modification ensures that the Solidity compiler recognizes the function as an override of the interface’s function and allows the contract to compile and function correctly.
+If compiled with Solidity 0.8.0, it will error as it needs to be of version ^0.8.4 to compile successfully.
+
+Mitigation:
+
+Update the pragma directive to enforce the use of Solidity 0.8.4 or later across all contracts. This ensures it compiles and that the contracts benefit from the bug fixes and optimisations available in Solidity 0.8.4.
+
+Updated Contract Example:
+```sol
+pragma solidity ^0.8.4;
+```
+
+By updating the pragma directive to ^0.8.4, we ensure that the contract is compiled with a Solidity version that includes all necessary fixes and optimisations, reducing the risk of security issues or bugs related to older versions.
