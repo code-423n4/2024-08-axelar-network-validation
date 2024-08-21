@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "2",
+  "title": "BaseWeightedMultisig contract Use of block.timestamp for Control Flow Decision in timeSinceRotation",
+  "issueId": 106,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/106"
+}
