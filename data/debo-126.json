@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "2",
+  "title": "TokenManagerProxy contract missing override specifier in Overriding Public State Variables and Functions",
+  "issueId": 126,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/126"
+}
