@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "2",
+  "title": "AxelarAmplifierGatewayProxy contract use of Delegatecall to User-Supplied Address via the constructor",
+  "issueId": 108,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/108"
+}
