@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "0xflamingo",
+  "risk": "2",
+  "title": "Instead of separating the logic into a separate function, consider inlining the logic into the calling function. This can reduce the number of function calls and improve readability.  Recommendation:  No recommendations provided.",
+  "issueId": 125,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/125"
+}
