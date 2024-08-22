@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "ABAIKUNANBAEV",
+  "risk": "3",
+  "title": "ITS Hub does not account for fee-on-transfer tokens when increasing / decreasing balance on the chains",
+  "issueId": 144,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/144"
+}
