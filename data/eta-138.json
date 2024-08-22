@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "eta",
+  "risk": "2",
+  "title": "Looping over unbounded `trusted_addresses` can lead to issues with saving new addresses and transaction failure",
+  "issueId": 138,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/138"
+}
