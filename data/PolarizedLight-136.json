@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "PolarizedLight",
+  "risk": "2",
+  "title": "Lack of ERC-1271 Compliance in AxelarAmplifierGateway, BaseWeighted MultiSig and ERC20Permit.",
+  "issueId": 136,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/136"
+}
