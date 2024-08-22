@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "debo",
+  "risk": "3",
+  "title": "GatewayCaller contract has External Call to User-Supplied Address for callContract function",
+  "issueId": 140,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/140"
+}
