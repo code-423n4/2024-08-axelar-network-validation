@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Taiger",
+  "risk": "2",
+  "title": "Any user can call the start_token_balance method to initialize token balance tracking",
+  "issueId": 160,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/160"
+}
