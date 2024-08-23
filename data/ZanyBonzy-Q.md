@@ -702,3 +702,69 @@ I'd recommend checking if allowance is less than amount instead.
     }
 ```
 ***
+
+### `domainSeparator` is immutable and set in constructor
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-gmp-sdk-solidity/contracts/gateway/AxelarAmplifierGateway.sol#L30-L34
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-gmp-sdk-solidity/contracts/governance/BaseWeightedMultisig.sol#L44-52
+
+#### Impact
+
+In AxelarAmplifierGateway.sol, the `domainSeparator` is set in the constructor. It's also declared in BaseWeightedMultisig.sol 
+
+```solidity
+    constructor(
+        uint256 previousSignersRetention_,
+        bytes32 domainSeparator_,
+        uint256 minimumRotationDelay_
+    ) BaseWeightedMultisig(previousSignersRetention_, domainSeparator_, minimumRotationDelay_) {}
+
+```
+
+```solidity
+    constructor(
+        uint256 previousSignersRetention_,
+        bytes32 domainSeparator_,
+        uint256 minimumRotationDelay_
+    ) {
+        previousSignersRetention = previousSignersRetention_;
+        domainSeparator = domainSeparator_;
+        minimumRotationDelay = minimumRotationDelay_;
+    }
+```
+Thia means that it can't be changed. Idealy, this wouldn't be an issue, but the contracts  is going to be deployed on [various chains](https://axelarscan.io/resources/chains)  and  doesn't take into account that the chain to which the protocol would be deployed could undergo a hardfork, which would then make the block.chainId attached to domainseparator to now be stale. As a result, signatures can be replayed across chains.
+
+#### Recommended Mitigation Steps
+
+Recommend not declaring it in the constructor.
+***
+
+
+### Solidity version ^0.8.23 won't work on all chains due to MCOPY 
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-gmp-sdk-solidity/hardhat.config.js#L39
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/hardhat.config.js#L38
+
+#### Impact
+
+
+Solidity version 0.8.23 introduces the MCOPY opcode, this may not be implemented on all chains and L2 thus reducing the portability and compatibility of the code. The protocol is expected to be deloyed on [various chains](https://axelarscan.io/resources/chains)  and as a result, deployment may fail on these chains.
+
+```js
+    version: '0.8.24',
+```
+
+
+```js
+    version: '0.8.23',
+```
+
+#### Recommended Mitigation Steps
+
+Consider using a earlier solidity version.
