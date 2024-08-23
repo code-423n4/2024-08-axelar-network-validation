@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "peanuts",
+  "risk": "3",
+  "title": "Users can bypass ITS interchain transfer by directly calling `callContract()` in GatewayCaller.sol",
+  "issueId": 155,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/155"
+}
