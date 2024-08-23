@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Taiger",
+  "risk": "2",
+  "title": "The operator role can abuse the signer rotation permission to update the signer list to the signers he controls.",
+  "issueId": 164,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/164"
+}
