@@ -546,3 +546,159 @@ The same can also be observed in FlowLimiter.sol in the `transferFlowLimiter` fu
 
 Consider implementing a two step method, like that of the `propose` and `accept` methods as can be see in Operator.sol and Minter.sol
 ***
+
+
+### Contract owner while being permissioned cannot rotate signers without enforcing rotation delay
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-gmp-sdk-solidity/contracts/gateway/AxelarAmplifierGateway.sol#L96-L107
+
+#### Impact
+
+Even though the contract owner arguably has more permissions and is more important than the operator, he can't call `rotateSigners` function without the function enforcing delay. This is due to the bool that sets `enforceRotationDelay` to true if the caller is not the operator. As a result, the owner calling the function will also be limited by the delay time.
+
+```solidity
+    function rotateSigners(WeightedSigners memory newSigners, Proof calldata proof) external {
+        bytes32 dataHash = keccak256(abi.encode(CommandType.RotateSigners, newSigners));
+
+        bool enforceRotationDelay = msg.sender != _axelarAmplifierGatewayStorage().operator;
+        bool isLatestSigners = _validateProof(dataHash, proof);
+        if (enforceRotationDelay && !isLatestSigners) {
+            revert NotLatestSigners();
+        }
+
+        // If newSigners is a repeat signer set, this will revert
+        _rotateSigners(newSigners, enforceRotationDelay);
+    }
+```
+
+#### Recommended Mitigation Steps
+I'd recommend also allowing the owner to be able to rotate signers without the delay being put into effect.
+***
+
+### Redundant comparison when handling fee
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/TokenHandler.sol#L195-L203
+
+#### Impact
+
+`_transferTokenFromWithFee` transfers tokens and checks the `balanceOf` after and before using the param `diff`. It then compares if the `diff` is less than `amount` being transferred, sets it as `amount` and returns it. 
+
+The comparison is unnecessary as `diff` can be set as `amount` regardless as if no fee is charged, `diff` will still be equal to `amount`, and realistically, `diff` can never be more than `amount`.
+
+```solidity
+    function _transferTokenFromWithFee(
+        address tokenAddress,
+        address from,
+        address to,
+        uint256 amount
+    ) internal noReEntrancy returns (uint256) {
+        uint256 balanceBefore = IERC20(tokenAddress).balanceOf(to);
+
+        _transferTokenFrom(tokenAddress, from, to, amount);
+
+        uint256 diff = IERC20(tokenAddress).balanceOf(to) - balanceBefore;
+        if (diff < amount) {
+            amount = diff;
+        }
+
+        return amount;
+    }
+```
+
+#### Recommended Mitigation Steps
+
+```diff
+    function _transferTokenFromWithFee(
+        address tokenAddress,
+        address from,
+        address to,
+        uint256 amount
+    ) internal noReEntrancy returns (uint256) {
+        uint256 balanceBefore = IERC20(tokenAddress).balanceOf(to);
+
+        _transferTokenFrom(tokenAddress, from, to, amount);
+
+        uint256 diff = IERC20(tokenAddress).balanceOf(to) - balanceBefore;
+-        if (diff < amount) {
+            amount = diff;
+-        }
+
+        return amount;
+    }
+```
+***
+
+### Initially minted tokens are not sent to minter contrary to the comments
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L124
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L151
+
+#### Impact
+
+According to the comments on `deployInterchainToken`, the minter is the address that the initially minted tokens are sent to.
+
+```solidity
+     * @param initialSupply The amount of tokens to mint initially (can be zero).
+     * @param minter The address to receive the initially minted tokens.
+     * @return tokenId The tokenId corresponding to the deployed InterchainToken.
+     */
+```
+But contrary to the implementation, the initially minted tokens are sent to msg.sender rather than the minter.
+
+```solidity
+    function deployInterchainToken(
+        bytes32 salt,
+        string calldata name,
+        string calldata symbol,
+        uint8 decimals,
+        uint256 initialSupply,
+        address minter
+    ) external payable returns (bytes32 tokenId) {
+//...
+            token.mint(sender, initialSupply);
+
+//...
+    }
+```
+
+***
+
+### `_approveGateway` should not check if allowance is 0
+
+Links to affected code *
+
+https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/TokenHandler.sol#L225-L230
+
+#### Impact
+
+`_approveGateway` checks if allowance is 0, and if 0, approves the amount to the gateway. This means, if the gateway has an allowance already greater than 0, even if its just 1 wei, attempts to approve the gateway will fail. This is very unlikely to happen though.
+
+```solidity
+    function _approveGateway(address tokenAddress, uint256 amount) internal {
+        uint256 allowance = IERC20(tokenAddress).allowance(address(this), gateway);
+        if (allowance == 0) {
+            IERC20(tokenAddress).safeCall(abi.encodeWithSelector(IERC20.approve.selector, gateway, amount));
+        }
+    }
+```
+
+#### Recommended Mitigation Steps
+
+I'd recommend checking if allowance is less than amount instead.
+```diff
+    function _approveGateway(address tokenAddress, uint256 amount) internal {
+        uint256 allowance = IERC20(tokenAddress).allowance(address(this), gateway);
+-        if (allowance == 0) {
++        if (allowance < amount) {
+            IERC20(tokenAddress).safeCall(abi.encodeWithSelector(IERC20.approve.selector, gateway, amount));
+        }
+    }
+```
+***
