@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "Taiger",
+  "risk": "2",
+  "title": "The update_token_balance method lacks access control, allowing any user to directly modify the token balance on the chain",
+  "issueId": 161,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/161"
+}
