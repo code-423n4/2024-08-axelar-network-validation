@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "peanuts",
+  "risk": "3",
+  "title": "No access control in ITS TokenHandler.sol giveToken and takeToken",
+  "issueId": 154,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/154"
+}
