@@ -63,3 +63,49 @@ Recommended Mitigation Steps:
 Reentrancy Guards: Implement reentrancy guards in both the callContract method and the target contract to prevent reentrant calls.
 State Checks: Ensure that contract state changes occur at the end of the execution and are verified before further processing.
 Transaction Atomicity: Consider making operations atomic where possible, ensuring that state changes occur in an all-or-nothing manner to avoid partial updates that could be exploited.
+
+
+### 4.Unchecked amount == 0 Leads to Unnecessary Token Transfer
+
+Risk Description:
+https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenService.sol#L375
+
+In the expressExecute function, the amount decoded from the payload is not validated for zero value (amount == 0). When amount == 0, the contract proceeds with token transfer operations, which, although typically ignored by the tokenHandler when amount == 0, could still introduce potential logical flaws or unnecessary calls.
+
+Mitigation:
+Add a check for amount == 0 in the expressExecute function. If amount == 0, the transaction should be reverted to prevent unnecessary token transfer operations, ensuring the contract's logic is robust and secure.
+
+Code Example:
+
+function expressExecute(
+    bytes32 commandId,
+    string calldata sourceChain,
+    string calldata sourceAddress,
+    bytes calldata payload
+) public payable whenNotPaused {
+    uint256 messageType = abi.decode(payload, (uint256));
+    if (messageType != MESSAGE_TYPE_INTERCHAIN_TRANSFER) {
+        revert InvalidExpressMessageType(messageType);
+    }
+
+    // Add check for amount == 0
+    (, , , , uint256 amount, ) = abi.decode(payload, (uint256, bytes32, bytes, bytes, uint256, bytes));
+    if (amount == 0) {
+        revert ZeroAmount();
+    }
+
+    if (gateway.isCommandExecuted(commandId)) revert AlreadyExecuted();
+
+    address expressExecutor = msg.sender;
+    bytes32 payloadHash = keccak256(payload);
+
+    emit ExpressExecuted(commandId, sourceChain, sourceAddress, payloadHash, expressExecutor);
+
+    _setExpressExecutor(commandId, sourceChain, sourceAddress, payloadHash, expressExecutor);
+
+    _expressExecute(commandId, sourceChain, payload);
+}
+Risk Impact:
+Unchecked amount == 0 may lead to meaningless token transfer operations, consuming contract resources and potentially causing unintended logical errors.
+
+By adding a check for amount in the expressExecute function, such issues can be effectively prevented, ensuring the accuracy and security of contract operations.
