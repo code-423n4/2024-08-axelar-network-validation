@@ -1,4 +1,4 @@
-### Primary Key and Prefixer implementation for TokenChainPair concatenate key components withut any delimiter or separator.
+### 1. Primary Key and Prefixer implementation for TokenChainPair concatenate key components withut any delimiter or separator.
 
 Links to affected code *
 
@@ -36,7 +36,7 @@ Consider using a delimiter to separate key components for better key uniqueness.
 
 ***
 
-### No way to revoke roles for Minter and Operator roles
+### 2. No way to revoke roles for Minter and Operator roles
 
 Links to affected code *
 
@@ -63,7 +63,7 @@ Recommend introducing a centralized admin, and the exposing the functions to rev
 
 ***
 
-### Function to remove trusted address is not exposed and as such trusted address cannot be remove
+### 3. Function to remove trusted address is not exposed and as such trusted address cannot be remove
 
 Links to affected code *
 
@@ -86,11 +86,11 @@ pub(crate) fn remove_trusted_address(
 
 #### Recommended Mitigation Steps
 
-REcommend creating a message type and exposing the function. Or conversely removing it since it doesn't seem to be in use in the codebase.
+Recommend creating a message type and exposing the function. Or conversely removing it since it doesn't seem to be in use in the codebase.
 
 ***
 
-### `increment_msg_counter` is u32 param which gives limitied counter amount before overflow dos
+### 4. `increment_msg_counter` is u32 param which gives limitied counter amount before overflow dos
 
 Links to affected code *
 
@@ -115,9 +115,7 @@ When the limit is reached, the calls to the function will always revert due to o
 Recommend using the u128 param instead, since it allows for much larger values.
 ***
 
-
-
-### Remove unused test declaration
+### 5. Remove unused test declaration
 
 Links to affected code *
 
@@ -133,7 +131,7 @@ pub(crate) fn remove_trusted_address(
 
 ***
 
-### Redundant check for signature weights in `_validateSignatures`
+### 6. Redundant check for signature weights in `_validateSignatures`
 
 Links to affected code *
 
@@ -168,7 +166,7 @@ https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca874
 Consider removing the `if (signaturesLength == 0) revert LowSignaturesWeight();` check, since its not needed.
 ***
 
-### ITS contract.rs doesn't set new contract version during migration
+### 7. ITS contract.rs doesn't set new contract version during migration
 
 Links to affected code *
 
@@ -253,7 +251,7 @@ mod tests {
 Recommend calling the `set_contract_version` in the `migrate` function.
 ***
 
-### Users cannot burn their own tokens
+### 8. Users cannot burn their own tokens
 
 Links to affected code *
 
@@ -280,7 +278,7 @@ Recommend introducing another burn function open to any user, with which msg.sen
 ```
 ***
 
-### ERC20 permit signatures cannot be cancelled before their expiry
+### 9. ERC20 permit signatures cannot be cancelled before their expiry
 
 Links to affected code *
 
@@ -312,7 +310,7 @@ Consider introducing an external function like `IncreaseNonce` that increase the
 
 ***
 
-### Implementations of `transferFrom` and `_spendAllowance` may not require approval from owner.
+### 10. Implementations of `transferFrom` and `_spendAllowance` may not require approval from owner.
 
 Links to affected code *
 
@@ -361,7 +359,7 @@ Use this
 ```
 ***
 
-### Direct deployment of InterchainToken risks a nameless, permisssionless, potentially useless token being deployed. Recommend calling the init fxn inside the constructor too.
+### 11. Direct deployment of InterchainToken risks a nameless, permisssionless, potentially useless token being deployed. Recommend calling the init fxn inside the constructor too.
 
 Links to affected code *
 
@@ -413,7 +411,7 @@ The issue is that the `init` function checks if the contrasct is already initial
 I'd recommend taking in the parameters needed for the `init` function and calling it in the constructor instead of `_initialize`. 
 ***
 
-### `_spendAllowance` implementation in InterchainToken.sol doesn't match the comment. 
+### 12. `_spendAllowance` implementation in InterchainToken.sol doesn't match the comment. 
 
 Links to affected code *
 
@@ -443,7 +441,7 @@ I'm leaning towarrds the comments being incorrect here, otherwise any attempts t
 
 ***
 
-### Redundant chcek for permissons, since function permission is open to anyone
+### 13. Redundant chcek for permissons, since function permission is open to anyone
 
 Links to affected code *
 
@@ -478,7 +476,7 @@ pub fn execute(
 The check for permissions can be safely removed.
 ***
 
-### `isCommandExecuted` returns true even for approved messages
+### 14. `isCommandExecuted` returns true even for approved messages
 
 Links to affected code *
 
@@ -506,7 +504,7 @@ Recommend just checking that the message is executed directly.
     }
 ```
 ***
-### Consider using two step to transfer roles
+### 15. Consider using two step to transfer roles
 
 Links to affected code *
 
@@ -548,7 +546,7 @@ Consider implementing a two step method, like that of the `propose` and `accept`
 ***
 
 
-### Contract owner while being permissioned cannot rotate signers without enforcing rotation delay
+### 16. Contract owner while being trusted/permissioned cannot rotate signers without enforcing rotation delay
 
 Links to affected code *
 
@@ -577,7 +575,7 @@ Even though the contract owner arguably has more permissions and is more importa
 I'd recommend also allowing the owner to be able to rotate signers without the delay being put into effect.
 ***
 
-### Redundant comparison when handling fee
+### 17. Redundant comparison when handling fee
 
 Links to affected code *
 
@@ -632,7 +630,7 @@ The comparison is unnecessary as `diff` can be set as `amount` regardless as if 
 ```
 ***
 
-### Initially minted tokens are not sent to minter contrary to the comments
+### 18. Initially minted tokens are not sent to minter contrary to the comments
 
 Links to affected code *
 
@@ -670,7 +668,7 @@ But contrary to the implementation, the initially minted tokens are sent to msg.
 
 ***
 
-### `_approveGateway` should not check if allowance is 0
+### 19. `_approveGateway` should not check if allowance is 0
 
 Links to affected code *
 
@@ -703,7 +701,7 @@ I'd recommend checking if allowance is less than amount instead.
 ```
 ***
 
-### `domainSeparator` is immutable and set in constructor
+### 20. `domainSeparator` is immutable and set in constructor
 
 Links to affected code *
 
@@ -743,7 +741,7 @@ Recommend not declaring it in the constructor.
 ***
 
 
-### Solidity version ^0.8.23 won't work on all chains due to MCOPY 
+### 21. Solidity version ^0.8.23 won't work on all chains due to MCOPY 
 
 Links to affected code *
 
@@ -768,3 +766,20 @@ Solidity version 0.8.23 introduces the MCOPY opcode, this may not be implemented
 #### Recommended Mitigation Steps
 
 Consider using a earlier solidity version.
+
+***
+
+### 22. Contracts will be deployed on blast but hasn't perform the needed configurations.
+
+Links to affected code *
+
+https://axelarscan.io/resources/chains 
+
+#### Impact
+
+The contracts are to be deployed on blast, an EVM compatible layer 2 chain known for claiming yields and gas fees. This is because its one of the supported chains on axelarscan. 
+Blast redirects sequencer or gas fees to the dapps that induced them, allowing smart contract developers to have an additional source of revenue. Since these contracts are to be used for by lots of users, it can be expected that functions inside the contracts will be spending a lot of gas. This can be beneficial to the developers as they can have additional revenue. However, the contracts implementation are not configured to take advantage of blast's features on claiming gas fees. This can be a lost of opportunity to earn potential income from the usage of the contracts.
+
+#### Recommended Mitigation Steps
+
+The contracts should implement the procedure from [Blast Docs](https://docs.blast.io/building/guides/gas-fees) on how to properly claim gas fees.
