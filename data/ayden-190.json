@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "ayden",
+  "risk": "2",
+  "title": "Incorrect setting of flow limit can lead to DoS",
+  "issueId": 190,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/190"
+}
