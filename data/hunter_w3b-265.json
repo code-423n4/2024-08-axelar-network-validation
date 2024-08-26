@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "hunter_w3b",
+  "risk": "2",
+  "title": "Potential Inconsistency Due to Unchecked Implementation Contract Changes in `InterchainTokenDeployer`",
+  "issueId": 265,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/265"
+}
