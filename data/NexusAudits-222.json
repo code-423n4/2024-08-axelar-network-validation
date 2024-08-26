@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "NexusAudits",
+  "risk": "2",
+  "title": "Signature Order Vulnerability in BaseWeightedMultisig Allows Rejection of Valid Multi-Signatures",
+  "issueId": 222,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/222"
+}
