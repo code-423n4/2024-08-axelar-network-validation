@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "OMEN",
+  "risk": "3",
+  "title": "Mismatch Between gasValue and msg.value will lead to draining ",
+  "issueId": 208,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/208"
+}
