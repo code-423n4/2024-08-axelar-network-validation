@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "OMEN",
+  "risk": "2",
+  "title": "Improper Use of tx.origin with Smart Contract Wallets",
+  "issueId": 207,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/207"
+}
