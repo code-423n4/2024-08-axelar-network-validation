@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "NexusAudits",
+  "risk": "2",
+  "title": "ERC20 allowance front-running vulnerability",
+  "issueId": 255,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/255"
+}
