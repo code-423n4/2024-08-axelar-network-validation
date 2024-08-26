@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "NexusAudits",
+  "risk": "2",
+  "title": "Race Condition in ERC20Permit Implementation Allows Double-Spending Through Replay Attacks",
+  "issueId": 250,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/250"
+}
