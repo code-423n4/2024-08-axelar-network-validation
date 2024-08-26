@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "minato7namikazi",
+  "risk": "3",
+  "title": "fn `route_incoming_messages` doesn't check if message has been approved or is ready ",
+  "issueId": 294,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/294"
+}
