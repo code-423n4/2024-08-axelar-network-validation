@@ -1,0 +1,8 @@
+{
+  "contest": 424,
+  "handle": "ABAIKUNANBAEV",
+  "risk": "2",
+  "title": "Incorrect checking for source chain in `_getExecuteParams()`",
+  "issueId": 201,
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/201"
+}
