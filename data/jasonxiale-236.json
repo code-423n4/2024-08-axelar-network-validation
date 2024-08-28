@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "token might be stuck in contracts if the peer token is paused on dest chain",
   "issueId": 236,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/236"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/236",
+  "validatedIssueId": 55,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/55"
 }
