@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "`InterchainTokenFactory.deployRemoteInterchainToken` might not work as expected",
   "issueId": 234,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/234"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/234",
+  "validatedIssueId": 56,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/56"
 }
