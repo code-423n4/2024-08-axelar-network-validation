@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Improper implementation of `isCommandExecuted` will cause approved messages to not be express executable",
   "issueId": 139,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/139"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/139",
+  "validatedIssueId": 119,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/119"
 }
