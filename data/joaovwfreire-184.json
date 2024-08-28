@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The execute contract at the interchain-token-service doesn't initialize the token balance at the source chain when deploying an interchain token",
   "issueId": 184,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/184"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/184",
+  "validatedIssueId": 113,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/113"
 }
