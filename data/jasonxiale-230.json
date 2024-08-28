@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Tokens with a maximum transfer logic might not work for InterchainTokenService",
   "issueId": 230,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/230"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/230",
+  "validatedIssueId": 106,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/106"
 }
