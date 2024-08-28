@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Smart wallet accounts will have issues when interacting with the ITS contract because of the use of tx.origin",
   "issueId": 156,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/156"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/156",
+  "validatedIssueId": 118,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/118"
 }
