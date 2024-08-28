@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Some tokens cannot be bridged",
   "issueId": 21,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/21"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/21",
+  "validatedIssueId": 132,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/132"
 }
