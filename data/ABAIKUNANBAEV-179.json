@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Trusted address of original source chain should be checked in the first GMP call to avoid revert in the second",
   "issueId": 179,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/179"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/179",
+  "validatedIssueId": 67,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/67"
 }
