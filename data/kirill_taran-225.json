@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "DoS: Gateway can accept only `4_294_967_295` messages of type `CallContract` across all source chains",
   "issueId": 225,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/225"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/225",
+  "validatedIssueId": 107,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/107"
 }
