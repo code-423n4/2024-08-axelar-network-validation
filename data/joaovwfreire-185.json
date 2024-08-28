@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Users can deploy gateway tokens but they won't work properly",
   "issueId": 185,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/185"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/185",
+  "validatedIssueId": 64,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/64"
 }
