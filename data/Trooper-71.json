@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "FlowLimit: Implementation restricts single request transfers contrary to documentation",
   "issueId": 71,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/71"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/71",
+  "validatedIssueId": 85,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/85"
 }
