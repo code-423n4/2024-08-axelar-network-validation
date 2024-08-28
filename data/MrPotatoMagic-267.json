@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Existing minter/operator will not be able to revoke newly proposed addresses ",
   "issueId": 267,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/267"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/267",
+  "validatedIssueId": 53,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/53"
 }
