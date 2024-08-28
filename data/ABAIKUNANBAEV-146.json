@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Token balance will not be updated on the source chain if the interchain token for this chain was not deployed via ITS Hub",
   "issueId": 146,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/146"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/146",
+  "validatedIssueId": 72,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/72"
 }
