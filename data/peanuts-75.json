@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "The source chain of Axelar-amplifier ITS does not have an initial balance, so all update_token_balance calls will be reverted ",
   "issueId": 75,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/75"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/75",
+  "validatedIssueId": 84,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/84"
 }
