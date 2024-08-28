@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Loss of fund as Unused Msg.value and gasValue is not Returned to Caller",
   "issueId": 289,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/289"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/289",
+  "validatedIssueId": 98,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/98"
 }
