@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Insufficient Msg.Value Validation in Cross-Chain Gas Payment Functions",
   "issueId": 246,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/246"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/246",
+  "validatedIssueId": 102,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/102"
 }
