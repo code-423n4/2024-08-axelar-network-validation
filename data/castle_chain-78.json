@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "The Axelar Amplifier Gateway is Not Fully Backward Compatible",
   "issueId": 78,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/78"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/78",
+  "validatedIssueId": 83,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/83"
 }
