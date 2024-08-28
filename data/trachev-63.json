@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Express executors may execute invalid commands, losing their transferred funds",
   "issueId": 63,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/63"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/63",
+  "validatedIssueId": 88,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/88"
 }
