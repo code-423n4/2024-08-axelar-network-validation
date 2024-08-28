@@ -4,5 +4,7 @@
   "risk": "3",
   "title": "Deploying an interchain token and a token manager for a token on a chain will always fail due to balance tracking error",
   "issueId": 84,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/84"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/84",
+  "validatedIssueId": 81,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/81"
 }
