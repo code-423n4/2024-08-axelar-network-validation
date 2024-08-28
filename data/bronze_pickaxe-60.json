@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Gas refunds will be lost when using smart contract wallets",
   "issueId": 60,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/60"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/60",
+  "validatedIssueId": 127,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/127"
 }
