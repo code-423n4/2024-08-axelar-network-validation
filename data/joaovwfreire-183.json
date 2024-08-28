@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "msg.value is decoupled from the gasValue parameter",
   "issueId": 183,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/183"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/183",
+  "validatedIssueId": 114,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/114"
 }
