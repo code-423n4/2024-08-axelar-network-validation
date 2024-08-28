@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "No check to ensure correct decimals are used",
   "issueId": 20,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/20"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/20",
+  "validatedIssueId": 96,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/96"
 }
