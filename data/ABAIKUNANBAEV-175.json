@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Not all the chains have 20 bytes addresses",
   "issueId": 175,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/175"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/175",
+  "validatedIssueId": 116,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/116"
 }
