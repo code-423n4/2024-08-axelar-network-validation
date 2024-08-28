@@ -4,5 +4,7 @@
   "risk": "2",
   "title": "Inconsistent Minter Assignment and Flow Limiter Settings in `InterchainTokenFactory::deployInterchainToken()`",
   "issueId": 49,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/49"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/49",
+  "validatedIssueId": 91,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/91"
 }
