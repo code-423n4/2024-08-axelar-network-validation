@@ -4,5 +4,7 @@
   "risk": "Q",
   "title": "QA Report",
   "issueId": 293,
-  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/293"
+  "issueUrl": "https://github.com/code-423n4/2024-08-axelar-network-validation/issues/293",
+  "validatedIssueId": 136,
+  "validatedIssueUrl": "https://github.com/code-423n4/2024-08-axelar-network-findings/issues/136"
 }
