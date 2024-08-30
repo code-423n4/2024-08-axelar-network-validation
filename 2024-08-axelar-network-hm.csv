@@ -1,0 +1,304 @@
+issue,title,primary finding,validator comment,status,root cause (URL),size
+findings-11,"TokenManager::approveService() has onlyService modifier, however tokenHandler will be msg.sender",findings-2,Service delegate call to TokenHandler,Unsatisfactory,,45
+findings-13,InterchainTokenService::transmitInterchainTransfer() will revert due to passing True as tokenOnly,,invalid. delegate call not change msg.sender,Unsatisfactory,,63
+findings-14,It is possible to steal refunded gas tokens from the caller,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,90
+findings-16,Tokens with transfer fees registered through Factory will disrupt token accounting,findings-31,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L255,76
+findings-17,Attacker can register wrong gateway token for a given tokenIdentifier,,onlyOwner function,Unsatisfactory,,44
+findings-18,`AxelarAmplifierGateway`: Malicious signatures remain valid even when malicious signers were rotated out by operators,findings-18,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L174-L188,60
+findings-19,Prepaid gas might be refunded to an incorrect address  ,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,93
+findings-2,`TokenHandler::postTokenManagerDeploy` Denial-of-Service Due to Wrong Access Control,findings-2,Service delegate call to TokenHandler,Unsatisfactory,,63
+findings-20,amplifier/interchain-token-service Lack of initialization privileges,validation-202,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/msg.rs#L27-L28,93
+findings-21,"interchainTransfer() user specifies CONTRACT_CALL, but it can be executed as EXPRESS_CALL and vice versa.",findings-21,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L1171,83
+findings-22,"_getExecuteParams() if chains is compromised , can submit sourceAddress=hub to skip ITS balance tracking restrictions",findings-22,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L985,89
+findings-23,Malicios signers removal procedure is very cumbersome and allows plenty of time for the bad actors to inflict damage,findings-23,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-gmp-sdk-solidity/contracts/gateway/AxelarAmplifierGateway.sol#L99-L103,68
+findings-24,Maliciosly approved messages cannot be marked as not approved,findings-18,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L174-L188,65
+findings-25,TokenManager::approveService() doesn't set tokenHandler approval,,Service delegate call to TokenHandler,Unsatisfactory,,48
+findings-26,Interchain token transferring can be DoSed,,unclear how malicious attacker's address on remote chain is same as interchain token deployer's address on source chain,Unsatisfactory,,78
+findings-27,Users can not register the canonical token as an interchain token in amplifier chains,findings-27,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L318,68
+findings-28,Executing express operations do not check the gas payment for express call,findings-21,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L1171,35
+findings-29,Calling `InterchainTokenService.deployInterchainToken` function only should be allowed to `InterchainTokenFactory` contract,findings-29,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327-L349,38
+findings-3,`TokenHandler::_mintToken` and `_burnToken` Denial-of-Service Due to Wrong Access Control,,Service delegate call to TokenHandler,Unsatisfactory,,57
+findings-30,Users can not set minter address of the interchain token freely,,seems intended,Unsatisfactory,,39
+findings-31,`InterchainTokenFactory` contract does not support registering canonical fee-on-transfer tokens,findings-31,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L255,36
+findings-33,Can disable ITSHub's balance tracking feature by setting an additional minter to the ITS address,findings-33,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L203,121
+findings-34,Anyone can front-run an Interchain Token Deployment with Interchain Transfers to mess up ITS Hub's balance tracking,findings-34,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/state.rs#L150,74
+findings-35,Anyone can steal locked tokens in the ITS Edge by deploying a Gateway Token Manager for the target token,findings-35,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L112-L115,128
+findings-36,Canonical Interchain Tokens can only be registered with LOCK_UNLOCK Token Managers,findings-31,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L255,45
+findings-37,cUSDCv3 as a canonical token can be drained from ITS Edge because of how it handles uint256 on transfers,findings-37,overinflated severity,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L108-L111,57
+findings-38,Minters of Native Interchain Tokens can steal locked tokens in their remote LOCK_UNLOCK counterparts,findings-38,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenService.sol#L327-L349,50
+findings-39,Operators can remove ITS Edge as Operator and block interchain transfers by setting flow limit to 1,,trusted role,Unsatisfactory,,63
+findings-4,Excess ETH Sent to Contract Not Refunded and Will Be Lost,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,63
+findings-40,COMP and UNI will not work with ITS because they do not support approval of values > uint96,findings-40,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/token-manager/TokenManager.sol#L181,59
+findings-41,Registering canonical interchain tokens can be blocked when pre-existing token uses the same address in different chains,findings-41,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenFactory.sol#L266-L294,66
+findings-42,Interchain Tokens do not support rebasing tokens like stETH,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,30
+findings-43,Bridge requests to remote chains where interchain tokens are not deployed can result in DoS attacks,findings-43,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L192,76
+findings-44,Redeploying a remote interchain token without a minter can initialize the ITSHub balance and DoS the bridge,findings-44,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L148-L157,65
+findings-45,Can bypass the flow limit by registering an interchain token as a canonical token,findings-45,seems like configuration issue,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L249,62
+findings-46,No guarantee of enough balance in the destination chain when paired Interchain Tokens are LOCK_UNLOCK,findings-46,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenService.sol#L286-L311,50
+findings-5,"The name, symbol, decimals, and miner can be set differently from the original when deploying remotely by calling deployInterchainToken directly",findings-5,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L330-L333,179
+findings-7,`UpdateTrustedAddress` cannot be called on the ITS Hub as no one has any Elevated roles,validation-202,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/msg.rs#L27-L28,77
+findings-8,Can block bridge or limit the bridgeable amount by initializing the ITSHub balance of the original chain,findings-8,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L176,279
+validation-10,Potential Centralization Risk in Operator Role,validation-164,trusted role,Unsatisfactory,,85
+validation-100,"Messages cannot be retried if routing fails, as `route_incoming_messages` will read into an empty storage",validation-100,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/contracts/axelarnet-gateway/src/contract/execute.rs#L77-L98,116
+validation-107,Risk of reuse of signatures across forks due to lack of chain ID validation,,invalid. `DOMAIN_SEPARATOR()` use `block.chainID`,Unsatisfactory,,99
+validation-11,Potential Misconfiguration of Trusted Addresses,,AI generated,Unsatisfactory,,67
+validation-111,Upgrades can be DOS'ed,validation-111,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-gmp-sdk-solidity/contracts/gateway/AxelarAmplifierGateway.sol#L63,82
+validation-114,Requiring the minter addresses to be same across different chains may lead to a DOS,,design choice,Unsatisfactory,,89
+validation-117,`isCommandExecuted` incorrectly returns that messages are executed,validation-117,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L115-L117,68
+validation-118,Current design do not support ERC20 rebasing token,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,45
+validation-121,"Passing an arbitrary from address to transferFrom (or safeTransferFrom) can lead to loss of funds, because anyone can transfer tokens from the from address if an approval is made.",,no detail,Unsatisfactory,,21
+validation-122,"Passing an arbitrary from address to transferFrom (or safeTransferFrom) can lead to loss of funds, because anyone can transfer tokens from the from address if an approval is made.",,no detail,Unsatisfactory,,21
+validation-123,"Use abi.encode() instead which will pad items to 32 bytes, which will prevent hash collisions (e.g. abi.encodePacked(0x123,0x456) => 0x123456 => abi.encodePacked(0x1,0x23456), but abi.encode(0x123,0x456) => 0x0...1230...456). Unless there is a compelling reason, abi.encode should be preferred. If there is only one argument to abi.encodePacked() it can often be cast to bytes() or bytes32() instead. If all arguments are strings and or bytes, bytes.concat() should be used instead.",,no detail,Unsatisfactory,,21
+validation-124,Consider protecting the initializer functions with modifiers.,,no detail,Unsatisfactory,,21
+validation-125,"Instead of separating the logic into a separate function, consider inlining the logic into the calling function. This can reduce the number of function calls and improve readability.  Recommendation:  No recommendations provided.",,no detail,Unsatisfactory,,21
+validation-127,The hub does not protect ITS tokens that were not deployed on a compromised chain,validation-127,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/state.rs#L192,151
+validation-128,TokenBalance limit could be bypassed by deploying TokenManager,validation-128,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/contract/execute.rs#L101-L406,59
+validation-132,Not compatible with rebasing tokens,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,72
+validation-133,ERC20Permit Vulnerability: Allowance Inflation and Persistent Approval Risks,,AI generated,Unsatisfactory,,251
+validation-135,Potential Risk of Trapped Ether in Core Contracts Due to Lack of Recovery Mechanism,,AI generated,Unsatisfactory,,189
+validation-136,"Lack of ERC-1271 Compliance in AxelarAmplifierGateway, BaseWeighted MultiSig and ERC20Permit.",,"invalid, AI generated",Unsatisfactory,,144
+validation-138,Looping over unbounded `trusted_addresses` can lead to issues with saving new addresses and transaction failure,,invalid,Unsatisfactory,,94
+validation-139,Improper implementation of `isCommandExecuted` will cause approved messages to not be express executable,validation-117,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L115-L117,79
+validation-14,Error Management,,invalid,Unsatisfactory,,43
+validation-141,An interchain token's `flowLimit` set in `TokenManager` can be used to DoS interchain transfers and potentially prevent an express executor from being reimbursed their tokens,validation-141,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/token-manager/TokenManager.sol#L117,28
+validation-143,Griefer could cause Economic damage/Temporary DoS on system due to lack of check on the source and destination address been the same,validation-143,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/contract/execute.rs#L19-L79,28
+validation-145,An attacker could deploy a gateway token and use it to drain the token on ITS.,validation-145,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenService.sol#L286-L311,257
+validation-147,Lack of Access Control in approveMessages Function,,invalid,Unsatisfactory,,31
+validation-149,The token balance tracking logic for some supported tokens can be broken/sidestepped,validation-149,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/axelar-amplifier/interchain-token-service/src/state.rs#L139-L164,160
+validation-150,Axelar can not process any state updating logic due to the current implementation of `contract#migrate()`,,suggestion not issue,Unsatisfactory,,46
+validation-151,Tokens could get stolen due to the hardcoded `deployer` in `InterchainTokenService#deployInterchainToken()`,,"user error, can deploy through factory",Unsatisfactory,,59
+validation-152,Axelar wouldn't be able to process executions from non-evm chains,validation-152,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/interchain-token-service/contracts/InterchainTokenService.sol#L720-L776,66
+validation-154,No access control in ITS TokenHandler.sol giveToken and takeToken,,invalid,Unsatisfactory,,99
+validation-155,Users can bypass ITS interchain transfer by directly calling `callContract()` in GatewayCaller.sol,,insufficient proof,Unsatisfactory,,146
+validation-156,Smart wallet accounts will have issues when interacting with the ITS contract because of the use of tx.origin,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,114
+validation-157,Inconsistent validation across different entry points when deploying interchain tokens,,no clear impact,Unsatisfactory,,201
+validation-158,"Failure to Update Token Balance in `update_token_balance` Function Leads to Inaccurate On-Chain Balance Storage, Impacting `execute_message` Functionality in Rust Contracts",,insufficient proof,Unsatisfactory,,225
+validation-159,Malicious addresses can send the same message or a large number of malicious messages to cause DoS,,AI generated,Unsatisfactory,,59
+validation-16,DOMAIN_SEPARATOR,,spam,Unsatisfactory,,52
+validation-160,Any user can call the start_token_balance method to initialize token balance tracking,,invalid,Unsatisfactory,,58
+validation-161,"The update_token_balance method lacks access control, allowing any user to directly modify the token balance on the chain",,invalid,Unsatisfactory,,57
+validation-162,Replay risk,,insufficient proof,Unsatisfactory,,34
+validation-163,Malicious users can change trusted addresses at will,,invalid,Unsatisfactory,,45
+validation-164,The operator role can abuse the signer rotation permission to update the signer list to the signers he controls.,validation-164,trusted role,Unsatisfactory,,65
+validation-166,Potentially arbitrary contract calls via the expressExecute method,,AI generated,Unsatisfactory,,39
+validation-167,Inconsistent callers leading to accidental transfer or destruction of funds,,invalid,Unsatisfactory,,63
+validation-168,Improper use of msg.sender in _takeToken method,,invalid,Unsatisfactory,,59
+validation-169,The initialization logic of the InterchainToken contract has serious flaws,,invalid,Unsatisfactory,,95
+validation-17,INITIALIZED_SLOT,,spam,Unsatisfactory,,70
+validation-170,invallid validation totalweight can be equal to threshold which threshold is equal to 0,,low quality,Unsatisfactory,,47
+validation-171, Axelar cross chain token transfers balance tracking logic is completely broken for rebasing tokens and the transfers of these type of tokens can be exploited,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,340
+validation-172,Flow limits can never get set by the `Operator`,,invalid,Unsatisfactory,,82
+validation-173,Deployments of new interchain tokens could be broken due to AC,,minter is set to address(this) before deployment,Unsatisfactory,,75
+validation-174,Cross chain calls can be permanently DOS'd due to collision of message Ids,validation-174,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/contracts/axelarnet-gateway/src/state.rs#L30,89
+validation-176,Permit doesn't work with DAI because the DAI token's permit signature is different.,,invalid,Unsatisfactory,,51
+validation-178,Multicall being marked as payable is seriously dangerous,,"insufficient proof, no clear impact",Unsatisfactory,,72
+validation-18,Events can result in incorrect action being taken ,validation-18,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/axelar-amplifier/contracts/axelarnet-gateway/src/contract/execute.rs#L71-L75,87
+validation-180,Missing `chainId` in `TokenChainPair` Deserialization Causes Discrepancies in Token Balance Tracking and Message Execution in Rust Contract,validation-180,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L71,45
+validation-181,expressExecute at the InterchainTokenService doesn't handle native tokens properly,validation-181,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L375,60
+validation-182,TokenHandler:transferTokenFrom doesn't ensure msg.value is equal to the desired amount in case of tokenIds of native tokens,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,39
+validation-183,msg.value is decoupled from the gasValue parameter,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,53
+validation-184,The execute contract at the interchain-token-service doesn't initialize the token balance at the source chain when deploying an interchain token,validation-75,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L166-L196,74
+validation-185,Users can deploy gateway tokens but they won't work properly,validation-185,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L710,53
+validation-186,TokenManager:approveService does not work with certain tokens,,Called at deployment so previous allowance is 0,Unsatisfactory,,27
+validation-189,Inaccurate `CrossChainId` matching in the `save_outgoing_msg ` function of ``state.rs` contract of  `axelarnet-gateway` package,validation-189,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/contracts/axelarnet-gateway/src/state.rs#L110,54
+validation-19,FOT & Rebase tokens will not work,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,55
+validation-190,Incorrect setting of flow limit can lead to DoS,validation-190,overflow,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/FlowLimit.sol#L103,194
+validation-193,The rust ITS Hub core entry points are not pausable,validation-193,"suggestion, not issue",Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/axelar-amplifier/contracts/axelarnet-gateway/src/state.rs#L1-L233,91
+validation-194,`UpdateTrustedAddress` is currently inaccessible to `Elevated` addresses,,invalid,Unsatisfactory,,112
+validation-195,Calling core state functionalities would fail since they've been restricted to the testing scope,validation-62,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L121-L128,109
+validation-197,"Unauthorized users can deploy Invalid token managers, polluting state",,invalid,Unsatisfactory,,152
+validation-198,TokenManager.sol has no way of handling rewards accrued by tokens that modify balance other than transfers.,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,48
+validation-199,`gasValue` can be more than msg.value in deployInterchainToken(),validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,402
+validation-2,Front-running risk in the context of the rotateSigners function,,spam,Unsatisfactory,,93
+validation-20,No check to ensure correct decimals are used,validation-20,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/InterchainTokenService.sol#L1096,48
+validation-200,refund address should not be hardcoded to tx.origin. ,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,65
+validation-202,ITS Hub trusted addresses cannot be updated,validation-202,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/msg.rs#L27-L28,29
+validation-203,`AxelarAmplifierGateway::rotateSigners` missing repeat signer set validation,,comments might be wrong but the code checked it,Unsatisfactory,,35
+validation-204,`InterchainTokenFactory` and `InterchainTokenService` lack of `contractId` validation during upgrade,,,Unsatisfactory,,34
+validation-205,Redundant `Prefixer` Trait in `TokenId` Struct Causes Unnecessary Issue in Key Generation in the `primitives.rs` Contract of the `interchain-token-service` Package,validation-205,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/primitives.rs#L24-L25,47
+validation-21,Some tokens cannot be bridged,validation-25,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L113,77
+validation-212,Setting the minter to address(0) deprives anyone from minting/burning,validation-256,invalid,Unsatisfactory,,79
+validation-213,Signature Replay Vulnerability in _validateProof function,validation-213,invalid,Unsatisfactory,,87
+validation-214,Token is minted to the `sender/msg.sender` instead of `minter`,validation-291,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenFactory.sol#L151,47
+validation-215,Signer Set Manipulation in _rotateSigners Function,,invalid,Unsatisfactory,,78
+validation-217,Signature Reordering and Duplication Vulnerability in BaseWeightedMultisig Allows Unauthorized Action Approval,,invalid,Unsatisfactory,,79
+validation-218,Lack of Token Approval Check in GatewayCaller Leads to Failed Cross-Chain Transactions and Gas Loss,,invalid,Unsatisfactory,,57
+validation-220,Unrestricted Remote Token Deployment in InterchainTokenService Enables Unauthorized Cross-Chain Token Replication,,AI generated,Unsatisfactory,,78
+validation-221,Proof Replay Vulnerability in Multisig Validation Allows Unauthorized Actions Across Epochs,,invalid,Unsatisfactory,,50
+validation-222,Signature Order Vulnerability in BaseWeightedMultisig Allows Rejection of Valid Multi-Signatures,,invalid,Unsatisfactory,,80
+validation-223,Duplicate Signer Vulnerability in Multi-Signature Scheme Allows Unilateral Control and Threshold Manipulation,,invalid,Unsatisfactory,,71
+validation-224,Potential Storage Slot Collision in Inheritance Chain Risks Data Corruption and Unpredictable Contract Behavior,,insufficient proof,Unsatisfactory,,94
+validation-225,DoS: Gateway can accept only `4_294_967_295` messages of type `CallContract` across all source chains,validation-174,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/contracts/axelarnet-gateway/src/state.rs#L30,88
+validation-226, Potential Salt Collision in `InterchainTokenDeployer.sol`,,Invalid,Unsatisfactory,,66
+validation-227,Unprotected Initialization Function,,invalid. It is called in deployInterchainToken(),Unsatisfactory,,40
+validation-228,ABI encoding Issue for `amount` cause `InterchainTransfer` failure in the `abi.rs` contract of `interchain-token-service` package,,insufficient proof,Unsatisfactory,,86
+validation-229,Unrestricted Token Burning by MINTER Role,,Intended,Unsatisfactory,,58
+validation-230,Tokens with a maximum transfer logic might not work for InterchainTokenService,findings-37,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L108-L111,62
+validation-232,`expressExecuteWithToken` and `expressExecute` are suspicious of the reorg attack,validation-232,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L676-L687,52
+validation-233,user might not be able to recevie the refund gas fee,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,58
+validation-234,`InterchainTokenFactory.deployRemoteInterchainToken` might not work as expected,validation-234,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L172-L210,29
+validation-235,TokenHandler contact can't handle rebase token as expect.,findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,57
+validation-236,token might be stuck in contracts if the peer token is paused on dest chain,validation-236,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/InterchainTokenService.sol#L1202-L1211,27
+validation-239,Incorrect Type Conversion in `abi_decode` Method for `token_manager_type` in the `abi.rs` contract of `interchain-token-service` package,validation-239,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/abi.rs#L161,83
+validation-24,"`rotateSigners` can get bricked, also stopping any message approvals",,the example is incorrect. signature list can have length 3 even though signers list has length 4,Unsatisfactory,,75
+validation-241,`BaseAmplifierGateway.isCommandExecuted` isn't correct,validation-117,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L115-L117,42
+validation-243,Not effective enough validation in `postTokenManagerDeploy()` allows invalid TokenManager deployments,,Invalid,Unsatisfactory,,152
+validation-244,Uninitialized State Variable,,AI generated,Unsatisfactory,,49
+validation-245,InterchainTokenFactory lacks important Event Emissions,,QA,Unsatisfactory,,74
+validation-246,Insufficient Msg.Value Validation in Cross-Chain Gas Payment Functions,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,82
+validation-247,Loss of Funds due to Lack of Input Validation,,invalid. user error,Unsatisfactory,,50
+validation-248,Potential Collision in Deterministic Addresses,,insufficient proof,Unsatisfactory,,47
+validation-249,Potential Contract Redeployment Vulnerability in _create3 Function,,no clear impact,Unsatisfactory,,65
+validation-25,`takeToken` will revert with some tokens,validation-25,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L113,31
+validation-250,Race Condition in ERC20Permit Implementation Allows Double-Spending Through Replay Attacks,,invalid,Unsatisfactory,,69
+validation-251,Insufficient Enum Validation in TokenManager Deployment Allows Creation of Undefined Types,,insufficient proof,Unsatisfactory,,43
+validation-252,Unbounded Gas Costs with Large Message Arrays DoS,validation-252,invalid,Unsatisfactory,,37
+validation-253,Insufficient Message Validation in approveMessages,,invalid,Unsatisfactory,,32
+validation-254,Inconsistency Between Code Implementation and Documentation in _spendAllowance Function,,invalid,Unsatisfactory,,78
+validation-255,ERC20 allowance front-running vulnerability,,,Unsatisfactory,,43
+validation-256,Permanent Loss of Minting Capability,validation-256,invalid,Unsatisfactory,,69
+validation-257,Unbounded Token Decimals Enable Dust Attacks and Network Congestion,validation-20,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/InterchainTokenService.sol#L1096,77
+validation-258,Potential Flow Limit Bypass in FlowLimit Contract,,invalid,Unsatisfactory,,79
+validation-259,Incorrect Direct Call in TokenManagerProxy Constructor Causes Deployment Failure and State Inconsistency,,invalid,Unsatisfactory,,44
+validation-260,Centralization Risk in Gateway Token Registration,,centralization risk,Unsatisfactory,,54
+validation-261,Canonical Token Limitation in InterchainTokenFactory,,"suggestion, not issue",Unsatisfactory,,51
+validation-262,Unchecked Token Initialization in deployInterchainToken,,invalid. spam,Unsatisfactory,,87
+validation-263,Bypass of Rotation Delay for Non-Latest Signers,,invalid. _rotateSigners() not allow to set old signer,Unsatisfactory,,62
+validation-264,Single-Step Operatorship Transfer,,QA max,Unsatisfactory,,46
+validation-267,Existing minter/operator will not be able to revoke newly proposed addresses ,validation-267,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/Minter.sol#L40,92
+validation-268,deployInterchainToken function doesn't check minter != address(0),validation-256,invalid,Unsatisfactory,,47
+validation-27,Potential loss of gas fees when `transmitInterchainTransfer` is called,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,140
+validation-270,Anyone can call function setup() in TokenManager.sol through the TokenManagerProxy contract,validation-270,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/token-manager/TokenManager.sol#L101,74
+validation-273,Lack of ETH Validation in InterchainTokenFactory,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,62
+validation-277,Premature Native Token Transfer in Contract Deployment,,invalid,Unsatisfactory,,48
+validation-279,Unbounded callData in executeProposal Function,,invalid,Unsatisfactory,,77
+validation-281,Block stuffing using `RouteMessages` messages,validation-281,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/contracts/axelarnet-gateway/src/state.rs#L98,153
+validation-282,Incorrect minter assignment in InterchainToken.sol prevents minting/burning of tokens,validation-282,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/interchain-token/InterchainToken.sol#L105,69
+validation-284,_create3Address() is vulnerable to a birthday attack,validation-284,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/utils/Create3AddressFixed.sol#L22,223
+validation-285,Missing Access Control and Unbounded Execution in `InterchainMultisig::executeCalls`,,invalid,Unsatisfactory,,93
+validation-288,Tokens are incorrectly minted to sender address and not minter on deployment,validation-291,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenFactory.sol#L151,62
+validation-29,Approve races are still possible,,invalid,Unsatisfactory,,50
+validation-290,important missed check In the `execute_message` function,,insufficient proof,Unsatisfactory,,48
+validation-291,Minting to wrong party,validation-291,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenFactory.sol#L151,76
+validation-292,No matching or checking in `match_gateway` function ,,insufficient proof,Unsatisfactory,,50
+validation-294,fn `route_incoming_messages` doesn't check if message has been approved or is ready ,,"invalid, AI generated",Unsatisfactory,,47
+validation-295,"Attacker Can Send Arbitrarily Large Payloads (>1MB) Across Chains, Potentially Overwhelming Axelar Network",,AI generated,Unsatisfactory,,117
+validation-297,fn  `start_token_balance` will always return Ok(()) when saving a new balance,validation-297,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L139,66
+validation-3,use of a constant PLACEHOLDER_TX_HASH,,insufficient proof,Unsatisfactory,,23
+validation-30,`ITS::apply_balance_tracking` can cause a fund loss when destination balance update fails,,"incomplete issue, not specify exactly how destination balance update can fail",Unsatisfactory,,258
+validation-31,`transferFrom` handles approval inaccurately,,invalid,Unsatisfactory,,51
+validation-33,Message execution may be skipped at the destination chain by front running the validation in gateway,validation-33,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L87-L95,23
+validation-34,`_validateProof()` will revert for first signer ,,"invalid, first signers are setup in `_setup()`",Unsatisfactory,,54
+validation-35,Attacker can gain control of token deployment,,"invalid, salt included tokenId, which included deployer",Unsatisfactory,,104
+validation-36,Excess Token sent when deploying a new interchain token is not refunded,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,55
+validation-37,The registerCanonicalInterchainToken function might assign an incorrect TokenManagerType,findings-31,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenFactory.sol#L255,99
+validation-38,EXECUTED state update is not necessarily accurate,validation-38,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/axelar-amplifier/contracts/axelarnet-gateway/src/contract/execute.rs#L111-L145,62
+validation-39,Lack of Error Handling in Data Decoding,,AI generated,Unsatisfactory,,60
+validation-4,Message ID Generation and Collisions,,insufficient quality,Unsatisfactory,,23
+validation-41,Arbitrary Message Approval in AxelarAmplifierGateway,,"spam, AI generated",Unsatisfactory,,91
+validation-43,The gateway operator may be unable to recover from a malicious rotation,,There is `enforceRotationDelay` to prevent malicious actors from rotating too quick,Unsatisfactory,,38
+validation-44,`contractCallWithTokenValue` will be unusable,validation-44,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/c383cc0e51805357bca8741ec5d1568cacbff6cc/interchain-token-service/contracts/InterchainTokenService.sol#L710,49
+validation-46,Missing approve(0),,invalid,Unsatisfactory,,45
+validation-47,addFlowIn used in givetoken and addFlowOut used in takeToken functions would incorrectly record account of tokens flowing in and flowing out,,invalid,Unsatisfactory,,105
+validation-48,Malicious signers even if removed by operator from latest signers can still approve messages,,operator can rotate previousSignersRetention times to remove Bob completely,Unsatisfactory,,120
+validation-49,Inconsistent Minter Assignment and Flow Limiter Settings in `InterchainTokenFactory::deployInterchainToken()`,validation-49,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/interchain-token-service/contracts/InterchainTokenFactory.sol#L147-L159,70
+validation-5,Unvalidated External Inputs,,insufficient quality,Unsatisfactory,,23
+validation-50,Attacker can potentially execute unauthorized actions via unverified inner message types (`InterchainTokenService::_getExecuteParams`),,insufficient proof,Unsatisfactory,,79
+validation-51,Malicious actor can front-run interchain transfers via `InterchainTokenService::expressExecute()`,,attacker lost fund in the scenario,Unsatisfactory,,101
+validation-52,Attacker can double-spend tokens due to improper handling of express executions (`InterchainTokenService::_executeWithToken`),,insufficient proof. can't find the implementation of validateContractCallAndMint(),Unsatisfactory,,88
+validation-53,Attacker can manipulate token transfers through payload exploitation in `InterchainTokenService::expressExecute()`,,insufficient proof. expressExecute() can execute with the same commandId again,Unsatisfactory,,79
+validation-55,ApproveService fails to read tokenAddress from it proxy contract (TokenManagerProxy) ,,"invalid, tokenAddress is a public immutable",Unsatisfactory,,92
+validation-56,Implementation contract (TokenManager) :: setup can be called more than once by it Proxy  contract ( TokenManagerProxy) ,validation-270,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/token-manager/TokenManager.sol#L101,89
+validation-57,Vulnerability in postTokenManagerDeploy Function :: Due to approveService Flaw,,"invalid, tokenAddress is a public immutable",Unsatisfactory,,78
+validation-59,Creation of Interchain Tokens is susceptible for Denial of Service,,invalid. function is delegate call from ITS,Unsatisfactory,,67
+validation-6,Message Verification Assumptions,,validation is done in contract.rs,Unsatisfactory,,23
+validation-60,Gas refunds will be lost when using smart contract wallets,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,89
+validation-61,Migration will not be possible due to no admin set in `instantiate()`,validation-61,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/contracts/axelarnet-gateway/src/contract.rs#L63-L85,71
+validation-62,Trusted addresses can not be removed,validation-62,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L121-L128,51
+validation-63,"Express executors may execute invalid commands, losing their transferred funds",validation-63,relayer should check it offchain but leaving for review,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L375-L396,136
+validation-64,Stuck tokens cannot be recovered,validation-64,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L632-L643,47
+validation-65,"Rebasing tokens are not supported, causing inaccuracies in accounting of assets",findings-42,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L63-L71,30
+validation-67,"To mitigate this risk, implement validation checks for the address before saving it to the storage.",,spam,Unsatisfactory,,71
+validation-69,Inconsistent balance tracking allows unlimited token minting,validation-69,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L192,127
+validation-7,`_validateSignatures` incorectly implements the second for loop,,insufficient proof,Unsatisfactory,,44
+validation-70,Trusted addresses can't be added or updated due to elevated permissions never being set,validation-202,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/msg.rs#L27-L28,83
+validation-71,FlowLimit: Implementation restricts single request transfers contrary to documentation,validation-71,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/FlowLimit.sol#L105,114
+validation-73,Vulnerability in callContract Function Due to Misuse of tx.origin as refundAddress in payNativeGasForContractCall,findings-19,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/utils/GatewayCaller.sol#L51,128
+validation-74,Axelar-amiplifier ITS ExecuteMsg::UpdateTrustedAddress can be called arbitrarily,,insufficient proof,Unsatisfactory,,117
+validation-75,"The source chain of Axelar-amplifier ITS does not have an initial balance, so all update_token_balance calls will be reverted ",validation-75,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L166-L196,136
+validation-76,The axelarnet gateway only routes one message per chain at a time,,invalid,Unsatisfactory,,100
+validation-77,"The storage of incoming and outgoing messages are not reset, which means that messages can only be sent once",,"invalid, cc_id included a counter",Unsatisfactory,,107
+validation-78,The Axelar Amplifier Gateway is Not Fully Backward Compatible,validation-78,,Satisfactory,https://github.com/axelarnetwork/interchain-token-service/blob/498a02b5ca59871e657b42871dba061796cf7860/contracts/InterchainTokenService.sol#L689-L699,93
+validation-8,Unbounded Loop in `_approveMessages` Function Poses Gas Limit Risk,validation-252,invalid,Unsatisfactory,,85
+validation-80,`to_vec()` in `ItsMessage::InterchainTransfer` of `abi_decode` function could cause unexpected behavior,validation-80,QA,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/abi.rs#L139,53
+validation-81,Attacker can make a deploy action fail,,"invalid, salt included tokenId, which included deployer",Unsatisfactory,,61
+validation-82,Untrusted addresses can execute messages by calling execute::update_trusted_address() function of Interchain-Token-Service,,invalid,Unsatisfactory,,90
+validation-83,Vulnerability in Signer Validation Mechanism in :: approveMessages Function,,invalid,Unsatisfactory,,102
+validation-84,Deploying an interchain token and a token manager for a token on a chain will always fail due to balance tracking error,validation-84,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/axelar-amplifier/interchain-token-service/src/state.rs#L159-L162,112
+validation-87,Lack of Duplicate Signer Checks :: _validateProof,,invalid,Unsatisfactory,,145
+validation-9,Lack of Input Validation in `callContract` Function,,AI generated,Unsatisfactory,,79
+validation-95,Missing address(0) check for minter can cause mishandlng of tokens,,insufficient proof,Unsatisfactory,,20
+validation-96,In `ERC20Permit` signatures can be re-used,,already included nonce,Unsatisfactory,,26
+validation-98,No access control on `AxelarAmplifierGateway::validateProof` and `AxelarAmplifierGateway::approveMessages` can cause DoS attack by malicios user,validation-33,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-gmp-sdk-solidity/contracts/gateway/BaseAmplifierGateway.sol#L87-L95,56
+validation-99,"In `AxelarAmplifierGateway`, `signers` array is unbounded and vulnarable to high gas expenses and DoS attacks.",,invalid,Unsatisfactory,,71
+validation-101,BaseWeightedMultisig Missing override Specifier in Overriding Function named epochBySignerHash,validation-101,invalid,Unsatisfactory,,75
+validation-102,BaseWeightedMultisig contract Missing override Specifier in Overriding Function named lastRotationTimestamp,validation-101,invalid,Unsatisfactory,,73
+validation-103,BaseWeightedMultisig contract Missing override Specifier in Overriding Function named timeSinceRotation,validation-101,invalid,Unsatisfactory,,73
+validation-104,BaseWeightedMultisig contract Missing override Specifier in Overriding Function named messageHashToSign,validation-101,invalid,Unsatisfactory,,75
+validation-105,BaseWeightedMultisig contract Missing override Specifier in Overriding Public State Variable named previousSignersRetention,validation-101,invalid,Unsatisfactory,,71
+validation-106,BaseWeightedMultisig contract Use of block.timestamp for Control Flow Decision in timeSinceRotation,validation-106,invalid,Unsatisfactory,,124
+validation-108,AxelarAmplifierGatewayProxy contract use of Delegatecall to User-Supplied Address via the constructor,,invalid. AI generated,Unsatisfactory,,167
+validation-109,AxelarAmplifierGateway contract Missing override Specifier in Overriding Functions,validation-101,invalid,Unsatisfactory,,274
+validation-110,BaseAmplifierGateway contract has Invalid Type for bytes.concat Function named messageToCommandId,,invalid,Unsatisfactory,,51
+validation-112,BaseWeightedMultisig contract missing override Specifier in Overriding Function named epoch,validation-101,invalid,Unsatisfactory,,78
+validation-113,InterchainTokenService contract has Incorrect Type Conversion from bytes calldata slice to bytes4 Leading to Fatal Compilation Error,,invalid,Unsatisfactory,,60
+validation-115,InterchainTokenService contract Missing override Specifier for Overriding Functions and State Variables,validation-101,invalid,Unsatisfactory,,556
+validation-119,TokenManager contract has Missing override Specifiers on Overriding Functions,validation-101,invalid,Unsatisfactory,,159
+validation-120,InterchainTokenExpressExecutable contract is Missing override Specifier in Overriding Functions,validation-101,invalid,Unsatisfactory,,140
+validation-126,TokenManagerProxy contract missing override specifier in Overriding Public State Variables and Functions,validation-101,invalid,Unsatisfactory,,85
+validation-129,ERC20Permit contract has Block Timestamp Manipulation Risk in permit function,validation-106,invalid,Unsatisfactory,,244
+validation-130,GatewayCaller contract has Multiple Calls in a Single Transaction in callContractWithToken function,,AI generated,Unsatisfactory,,218
+validation-140,GatewayCaller contract has External Call to User-Supplied Address for callContract function,,spam,Unsatisfactory,,213
+validation-142,ITS Hub does not implement AxelarExecutableMsg::Execute interface,,invalid,Unsatisfactory,,43
+validation-144,ITS Hub does not account for fee-on-transfer tokens when increasing / decreasing balance on the chains,,insufficient proof,Unsatisfactory,,85
+validation-146,Token balance will not be updated on the source chain if the interchain token for this chain was not deployed via ITS Hub,validation-146,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/contract/execute.rs#L136,82
+validation-175,Not all the chains have 20 bytes addresses,validation-152,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/69c4f2c3fcefb1b8eb2129af9c3685a44ae5b6fe/interchain-token-service/contracts/InterchainTokenService.sol#L720-L776,59
+validation-177,Source address does not correspond to the trusted source address in ITS Hub,validation-177,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/axelar-amplifier/interchain-token-service/src/contract/execute.rs#L31,60
+validation-179,Trusted address of original source chain should be checked in the first GMP call to avoid revert in the second,validation-179,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/InterchainTokenService.sol#L981,46
+validation-187,The message can't be executed again once the message can't be executed successfully,,insufficient proof,Unsatisfactory,,94
+validation-188,Cross-chain tokens transactions can be replayed after the chain hard-fork,,insufficient proof,Unsatisfactory,,99
+validation-191,Signature Replay Attack Using ,,spam AI generated,Unsatisfactory,,56
+validation-201,Incorrect checking for source chain in `_getExecuteParams()`,,suggestion not issue,Unsatisfactory,,55
+validation-206,Arbitrary Token Amount Manipulation,,AI generated,Unsatisfactory,,70
+validation-207,Improper Use of tx.origin with Smart Contract Wallets,,AI generated,Unsatisfactory,,59
+validation-208,Mismatch Between gasValue and msg.value will lead to draining ,,AI generated,Unsatisfactory,,200
+validation-209,Stuck Funds Due to Delegatecall in Cross-Chain Transactions,,AI generated,Unsatisfactory,,66
+validation-210,Unrestricted Access to `acceptMintership` Function in `Minter` Contract,,invalid,Unsatisfactory,,61
+validation-211,unchecked output of the ECDSA recover function.,,invalid,Unsatisfactory,,69
+validation-216,Optional ERC-20 functional required.,validation-25,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L113,64
+validation-219,ERC20 double approval,,,Unsatisfactory,,39
+validation-22,Lack of Zero Address Check in transferOperatorship Function in the AxelarAmplifierGateway contract,,,Unsatisfactory,,111
+validation-23,Lack of Balance Check in interchainTransfer Function within InterchainTokenStandard contract,,spam AI generated,Unsatisfactory,,147
+validation-231,Potential Loss of InterchainTokens Due to Uninitialized Minter Address,,AI generated,Unsatisfactory,,133
+validation-238,`deployInterchainToken` Function Always Reverts,,invalid,Unsatisfactory,,114
+validation-240,acceptOperatorship can be called by any operator,,invalid,Unsatisfactory,,26
+validation-242,CREATE3 is not available in the ZkSync Era,,invalid,Unsatisfactory,,27
+validation-26,Allowance Underrun in _spendAllowance Function within InterchainToken contract,,spam AI generated,Unsatisfactory,,102
+validation-265,Potential Inconsistency Due to Unchecked Implementation Contract Changes in `InterchainTokenDeployer`,,invalid,Unsatisfactory,,56
+validation-266, Unauthorized Deployment of Tokens via InterchainTokenDeployer function ,,invalid,Unsatisfactory,,138
+validation-269,Unauthorized Cross-Chain Token Transfer issue occur  in Axelar Amplifier Gateway contract ,,invalid,Unsatisfactory,,131
+validation-274,Lack of Role-Based Access Control in BaseAmplifierGateway.sol,,invalid,Unsatisfactory,,46
+validation-276,No check on receiver address ,,invalid,Unsatisfactory,,63
+validation-278,BaseWeightedMultisig.sol :: Missing nonce in `_validateSignatures()` allows signature replay,validation-213,invalid,Unsatisfactory,,76
+validation-280,Potential DoS By Block Gas Limit in BaseWeightedMultisig.sol,,,Unsatisfactory,,51
+validation-283,Unprotected Function Calls in InterchainTokenFactory.sol allow reentrancy,,invalid,Unsatisfactory,,50
+validation-286,Replay Vulnerability in Trusted Address System,,AI generated,Unsatisfactory,,100
+validation-289,Loss of fund as Unused Msg.value and gasValue is not Returned to Caller,validation-199,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/4572617124bed39add9025317d2c326acfef29f1/interchain-token-service/contracts/InterchainTokenService.sol#L327,82
+validation-79,Solc Fatal Error - ParserError Due to Incompatible Solidity Version in the BaseAmplifierGateway contract,,invalid,Unsatisfactory,,78
+validation-85,Compilation error in the AxelarAmplifierGateway contract due to Incompatible Solidity Version Specified in Pragma,,invalid,Unsatisfactory,,75
+validation-88,Incorrect Solidity Pragma Version Used in the BaseWeightedMultisig contract,,invalid,Unsatisfactory,,63
+validation-89,Not all ERC20 tokens have symbol defined as a string data type,validation-25,,Satisfactory,https://github.com/code-423n4/2024-08-axelar-network/blob/main/interchain-token-service/contracts/TokenHandler.sol#L113,33
+validation-91,An attacker can steal tokens using the TokenHandler.transferTokenFrom() function,,invalid,Unsatisfactory,,24
+validation-92,Failure to validate the calling address of the TokenHandler.giveToken() function will affect the functioning of the contract,,Service delegate call to TokenHandler,Unsatisfactory,,24
+validation-93,onlyOwner check not working in InterchainTokenFactory.sol and InterchainTokenService.sol contracts,,invalid,Unsatisfactory,,31
+validation-94,BaseWeightedMultisig contract has Missing override Specifier in Overriding Function named signerHashByEpoch,validation-101,invalid,Unsatisfactory,,75
